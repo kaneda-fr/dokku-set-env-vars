@@ -1,0 +1,36 @@
+name: "Dokku set environment variable action"
+author: "Sébastien Lacoste-Seris"
+description: "Setting an environment variable during dokku deployment action."
+branding:
+  icon: "play"
+  color: "green"
+inputs:
+  ssh-private-key:
+    description: "The ssh private key to the dokku instance. WARNING: use a secret! Do not pass a plain text value!"
+    required: true
+  dokku-user:
+    description: "The user to use for ssh (Default: dokku)"
+    required: false
+    default: "dokku"
+  dokku-host:
+    description: "The dokku host to ssh into"
+    required: true
+  app-name:
+    description: "The dokku app name"
+    required: true
+  var-name:
+    description: "The name of the environment variable to set in dokku config"
+    required: true
+  var-value:
+    description: "The value of the environment variable to set in dokku config"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.ssh-private-key }}
+    - ${{ inputs.dokku-user }}
+    - ${{ inputs.dokku-host }}
+    - ${{ inputs.app-name }}
+    - ${{ inputs.var-name }}
+    - ${{ inputs.var-value }}

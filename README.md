@@ -30,6 +30,10 @@ The name of the environment variable to set
 
 The value of the environment variable to set
 
+### app-restart
+
+Trigger restart of the app when config is changed. If not set to false, application will be restarted.
+
 ## Example
 
 Note: `actions/checkout` must preceed this action in order for the repository data to be exposed for the action.

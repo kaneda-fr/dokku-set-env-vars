@@ -24,6 +24,10 @@ inputs:
   var-value:
     description: "The value of the environment variable to set in dokku config"
     required: true
+  app-restart:
+    description: "Application restart when confifg is changed (Default: true)"
+    required: false
+    default: "true"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -34,3 +38,4 @@ runs:
     - ${{ inputs.app-name }}
     - ${{ inputs.var-name }}
     - ${{ inputs.var-value }}
+    - ${{ inputs.app-restart }}

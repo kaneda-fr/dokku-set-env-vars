@@ -16,7 +16,7 @@ ssh-keyscan $DOKKU_HOST >> ~/.ssh/known_hosts
 # Push to Dokku git repository
 SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DOKKU_USER@$DOKKU_HOST"
 
-eval $SSH_COMMAND apps:list |grep  $DOKKU_APP_NAME --silent  || eval $SSH_COMMAND apps:create $DOKKU_APP_NAME
-if [[ $(eval $SSH_COMMAND config:get $APP $DOKKU_VAR_NAME) != $DOKKU_VAR_VALUE ]] ; then
-  eval $SSH_COMMAND config:set $APP $DOKKU_VAR_NAME=$DOKKU_VAR_VALUE
+eval $SSH_COMMAND apps:list |grep  -q $DOKKU_APP_NAME || eval $SSH_COMMAND apps:create $DOKKU_APP_NAME
+if [[ $(eval $SSH_COMMAND config:get $DOKKU_APP_NAME $DOKKU_VAR_NAME) != $DOKKU_VAR_VALUE ]] ; then
+  eval $SSH_COMMAND config:set $DOKKU_APP_NAME $DOKKU_VAR_NAME=$DOKKU_VAR_VALUE
 fi

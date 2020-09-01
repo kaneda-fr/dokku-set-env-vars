@@ -18,7 +18,7 @@ ssh-keyscan $DOKKU_HOST >> ~/.ssh/known_hosts
 SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DOKKU_USER@$DOKKU_HOST"
 
 if [ $DOKKU_APP_RESTART == "false" ] ; then
-  $APP_RESTART_PARAM = "--no-restart"
+  export APP_RESTART_PARAM="--no-restart"
 fi
 
 eval $SSH_COMMAND apps:list |grep  -q $DOKKU_APP_NAME || eval $SSH_COMMAND apps:create $DOKKU_APP_NAME

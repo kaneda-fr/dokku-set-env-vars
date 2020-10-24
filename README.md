@@ -32,7 +32,7 @@ The value of the environment variable to set
 
 ### app-restart
 
-Trigger restart of the app when config is changed. If not set to false, application will be restarted.
+Trigger restart of the app when config is changed. If not set to false, application will not be restarted.
 
 ## Example
 
